@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valentine's Secret Message ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            transition: background 1s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            transition: all 0.5s ease;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ff6666;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #ffb3b3;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff3333;
+        }
+
+        #secretMessage {
+            display: none;
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: rgba(255, 240, 240, 0.9);
+            border-radius: 10px;
+            animation: slideDown 1.5s ease;
+        }
+
+        .heart {
+            color: #ff4d4d;
+            font-size: 2rem;
+            animation: pulse 1s infinite;
+        }
+
+        .error {
+            color: #ff4d4d;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .success-bg {
+            background-image: url("us.jpg");
+            background-color: rgba(255, 230, 230, 0.8);
+        }
+
+        .message-visible .container {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💝 Valentine's Secret Message 💝</h1>
+        
+        <div class="question">
+            <label>When is my date of birth?</label>
+            <input type="text" id="dob" placeholder="DD/MM/YYYY">
+        </div>
+
+        <div class="question">
+            <label>What's my favorite color?</label>
+            <input type="text" id="color">
+        </div>
+
+        <div class="question">
+            <label>What are my favorite shoes?</label>
+            <input type="text" id="shoes">
+        </div>
+
+        <div class="question">
+            <label>What's my favorite food?</label>
+            <input type="text" id="food">
+        </div>
+
+        <div class="question">
+            <label>What is your nickname in my phone?</label>
+            <input type="text" id="nickname">
+        </div>
+
+        <button onclick="checkAnswers()">Reveal Secret Message ❤️</button>
+        
+        <div id="error" class="error">
+            Oops! Some answers are incorrect. Try again! ❤️
+        </div>
+
+        <div id="secretMessage">
+            <span class="heart">❤️</span>
+            <p>happy valentines day for my sweetu chakuli baby .... iiiiii loveeeeee youuuuuu</p>
+            <span class="heart">❤️</span>
+        </div>
+    </div>
+
+    <script>
+        // Correct answers (you can modify these)
+        const correctAnswers = {
+            dob: "16/10/2005",
+            color: "black",
+            shoes: "jordans",
+            food: "paneer",
+            nickname: "baby doll"
+        };
+
+        function checkAnswers() {
+            const dob = document.getElementById('dob').value.toLowerCase();
+            const color = document.getElementById('color').value.toLowerCase();
+            const shoes = document.getElementById('shoes').value.toLowerCase();
+            const food = document.getElementById('food').value.toLowerCase();
+            const nickname = document.getElementById('nickname').value.toLowerCase();
+
+            if (dob === correctAnswers.dob && 
+                color === correctAnswers.color && 
+                shoes === correctAnswers.shoes && 
+                food === correctAnswers.food && 
+                nickname === correctAnswers.nickname) {
+                    document.body.classList.add('success-bg');
+                    document.body.classList.add('message-visible');
+                    document.getElementById('secretMessage').style.display = 'block';
+                    document.getElementById('error').style.display = 'none';
+                    
+                    // Hide the questions after successful answer
+                    const questions = document.querySelectorAll('.question');
+                    questions.forEach(q => {
+                        q.style.display = 'none';
+                    });
+                    document.querySelector('button').style.display = 'none';
+            } else {
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('secretMessage').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
